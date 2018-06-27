@@ -43,11 +43,11 @@ describe("defaults", function() {
     });
   });
 
-  it("returns empty object if properties are not present", function() {
+  it("returns undefined if properties are not present", function() {
     expect(defaults({
       "title": "Album Selector",
       "type": "object"
-    })).toEqual({});
+    })).toEqual(undefined);
   });
 
   it("sets a falsy value", function() {
@@ -69,7 +69,7 @@ describe("defaults", function() {
     });
   });
 
-  it("returns empty object if nested object's properties are not present", function() {
+  it("returns undefined if nested object's properties are not present", function() {
     expect(defaults({
       "title": "Wall",
       "type": "object",
@@ -80,9 +80,7 @@ describe("defaults", function() {
           "albumSelector": true
         }
       }
-    })).toEqual({
-      album: {}
-    });
+    })).toEqual(undefined);
   });
 
   it("returns null if property default is set to null", function () {
@@ -143,7 +141,7 @@ describe("defaults", function() {
           "type": "string"
         }
       }
-    })).toEqual({});
+    })).toEqual(undefined);
   });
 
   it("sets default values of an array type", function() {
@@ -246,7 +244,8 @@ describe("defaults", function() {
         "albums": {
           "type": "array",
           "items": {
-            "type": "object"
+            "type": "object",
+            "default": {}
           },
           "minItems": 2,
           "maxItems": 2
@@ -348,7 +347,7 @@ describe("defaults", function() {
           "default": 30
         }
       }
-    })).toEqual({});
+    })).toEqual(undefined);
   });
 
   it('returns defaults if they are present in nested reference', function () {
